@@ -10,7 +10,7 @@ import reportRoute from './routes/report-route.js';
 import accountRoute from './routes/account-route.js';
 
 const app = express();
-
+app.get("/",(req,res)=>{res.send("BACKEND IS RUNNING");});
 (async () => {
     // Connecting Mongoose
     await CONNECT_DB();
