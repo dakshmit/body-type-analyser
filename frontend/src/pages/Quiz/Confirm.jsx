@@ -10,9 +10,12 @@ const ConfirmPage = () => {
     // call sendReport within and then call wrapper in button onClick
     
     return (
-        <div>
-            <h2>Reay to Submit ?</h2>
-            <button onClick={sendReport(report)}>Save & Submit</button>
+        <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-rose-100 to-rose-300 text-gray-800'>
+            <h2 className='text-3xl font-bold mb-6'>Reay to Submit ?</h2>
+            <button 
+                onClick={sendReport(report)}
+                className='bg-rose-600 hover:bg-rose-700 text-white font-semibold px-6 py-3 rounded shadow-md transition-all'
+            >Save & Submit</button>
         </div>
     );
 }

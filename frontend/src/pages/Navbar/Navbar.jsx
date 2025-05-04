@@ -19,19 +19,41 @@ function Navbar() {
     };
 
     return (
-        <nav className='bg-teal-600 text-zinc-400 p-4'>
-            <div className='flex justify-between items-center'>
-                <Link to='/' className='text-lg font-bold'>Home</Link>
-                <button onClick={ () => setIsOpen(!isOpen) } className='text-zinc-400 font-bold w-fit'>
-                    { isOpen ? '^' : '…'}
-                </button>
+        <nav className='bg-gray-800 text-white shadow-md relative'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center'>
+                <Link to='/' className='text-lg font-semibold px-3 py-2 rounded-md hover:bg-gray-700'>Home</Link>
+                <div 
+                    onClick={ () => setIsOpen(!isOpen) } 
+                    className='cursor-pointer px-3 py-2 rounded-md hover:bg-gray-700'
+                    type='button'
+                >
+                    { isOpen ? '▲' : '▼'}
+                </div>
             </div>
 
             { isOpen && (
-                <div className='flex flex-col gap-2 mt-2'>
-                    <Link to='/Layout/dashboard' onClick={ () => setIsOpen(false)} className='bg-sky-300 text-blue-200 w-fit'>Dashboard</Link>
-                    <Link to='/Layout/Start' onClick={ () => setIsOpen(false)} className='bg-sky-300 text-blue-200 w-fit'>Test Prakriti</Link>
-                    <button to='/login' onClick={ () => handleLogout() } className='bg-pink-950 text-blue-200 w-fit'>Logout</button>
+                <div className='absolute right-0 top-16 mt-1 w-48 bg-gray-700 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1 z-50'>
+                    <Link 
+                        to='/Layout/dashboard' 
+                        onClick={ () => setIsOpen(false)} 
+                        className='block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white rounded-md'
+                    >
+                        Dashboard
+                    </Link>
+                    <Link 
+                        to='/Layout/Start' 
+                        onClick={ () => setIsOpen(false)} 
+                        className='block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white rounded-md'
+                    >
+                        Test Prakriti
+                    </Link>
+                    <div 
+                        onClick={ () => handleLogout() } 
+                        className='block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white rounded-md cursor-pointer'
+                        type='button'
+                    >
+                        Logout
+                    </div>
                 </div>
             )}
         </nav>
@@ -39,32 +61,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-/*
-        <>
-            <nav className="navbar">
-                <div className="navbar-container">
-                
-                    <input type="checkbox" id="menu-toggle" />
-
-                    <div className="hamburger-lines">
-                        <span className="line line1">_</span>
-                        <span className="line line2">_</span>
-                        <span className="line line3">_</span>
-                    </div>
-
-                
-                    <ul className="menu-items">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Details</a></li>
-                        <li><a href="#">Test</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-
-            
-                    <h1 className="logo">WELCOME BACK 😊</h1>
-                </div>
-            </nav>
-        </>
-*/
