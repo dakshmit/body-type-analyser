@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 const fetchQuestion = async (id, setCurrentQuestion) => {
     try {
@@ -11,41 +12,45 @@ const fetchQuestion = async (id, setCurrentQuestion) => {
     }
 };
 
-const QuizPage = () => {
-    const [currentQuestion, setCurrentQuestion] = useState(null); // Initialising Empty Object for Current Question
-    const [questionIndex, setQuestionIndex] = useState(1); // Initialising question_id to be 1
-    const [report, setReport] = useState([]); // Initialising report to empty array
+const Quiz = () => {
+    const [currentQuestion, setCurrentQuestion] = useState(null);
+    const [questionIndex, setQuestionIndex] = useState(1);
+    const [report, setReport] = useState([]);
 
     const navigate = useNavigate();
+    const location = useLocation();
+    
+    const userName = location.state?.name || 'Guest'; 
 
     const handleNext = () => {
         const selected = document.querySelector('input[name="quiz-option"]:checked');
 
-        if(selected) {
-            console.log('Saving response for Question ID:', currentQuestion.question_id);
+        if (selected) {
+           
             const updatedReport = [
                 ...report,
                 {
+                    
                     question_id: currentQuestion.question_id,
                     question: currentQuestion.question,
                     selected: selected.value
                 }
             ];
             setReport(updatedReport);
+            
+            if (questionIndex < 34) {
+                setQuestionIndex((prev) => prev + 1);
+            } else {
+                navigate('/Confirm', { state: { report: updatedReport,  name: userName} });
 
-            if(questionIndex < 34) {
-                setQuestionIndex((prev) => (prev + 1));
-            }
-            else {
-                navigate('/Confirm', { state: { report: updatedReport}})
             }
 
+           
             selected.checked = false;
-        }
-        else {
+        } else {
             alert("This Question is Mandatory!");
         }
-    }
+    };
 
     useEffect(() => {
         fetchQuestion(questionIndex, setCurrentQuestion);
@@ -53,30 +58,28 @@ const QuizPage = () => {
 
     return (
         <div>
-            {currentQuestion 
-                ?
-                    <div>
-                        <h2>{currentQuestion.question}</h2>
-                        {
-                            currentQuestion.options?.map((option, index) => (
-                                <div key={index}>
-                                    <input
-                                        type="radio"
-                                        id={`option-${index}`}
-                                        name="quiz-option"
-                                        value={option.value}
-                                    />
-                                    <label htmlFor={`option-${index}`}>{option.text}</label>
-                                </div>
-                            ))
-                        }
-                    </div> 
-                :
-                    <p>Loading Question...</p>
-            }
+            <h3>Welcome, {userName}!</h3>
+            {currentQuestion ? (
+                <div>
+                    <h2>{currentQuestion.question}</h2>
+                    {currentQuestion.options?.map((option, index) => (
+                        <div key={index}>
+                            <input
+                                type="radio"
+                                id={`option-${index}`}
+                                name="quiz-option"
+                                value={option.value}
+                            />
+                            <label htmlFor={`option-${index}`}>{option.text}</label>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>Loading Question...</p>
+            )}
             <button onClick={handleNext}>Next</button>
         </div>
     );
 };
 
-export default QuizPage;
+export default Quiz;

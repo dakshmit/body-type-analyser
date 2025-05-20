@@ -9,7 +9,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import StartPage from "./pages/Quiz/Start";
 import QuizPage from "./pages/Quiz/Quiz";
 import ConfirmPage from "./pages/Quiz/Confirm";
-
+import Result from "./pages/Result/Result";
+import Resultimage from "./pages/Result/Resultimage";
 const App = () => {
     return (
         <>
@@ -21,6 +22,8 @@ const App = () => {
                 <Route path='/Start' element={<StartPage />} />
                 <Route path='/Quiz' element={<QuizPage />} />
                 <Route path='/Confirm' element={<ConfirmPage />} />
+                <Route path='/Result' element={<Result />}/>
+                <Route path='/Resultimage' element={<Resultimage />}/>
             </Routes>
         </>
     );

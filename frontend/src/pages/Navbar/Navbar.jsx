@@ -17,10 +17,10 @@ function Navbar(props) {
 
         
             <ul className="menu-items">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Details</a></li>
-                <li><a href="#">Test</a></li>
+                <li><a href="#page1">Home</a></li>
+                <li><a href="#page2">About</a></li>
+                <li><a href="#page3">Details</a></li>
+                <li><a href="/start">Test</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
 

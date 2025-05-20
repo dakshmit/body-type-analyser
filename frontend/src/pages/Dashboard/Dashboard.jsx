@@ -11,8 +11,8 @@ function Dashboard() {
 
     return (
         <>
-            <Navbar />
-            <div className="card">
+            <Navbar  />
+            <div className="card" id="page1">
                 <div className="firstpage">
                     <div className="innercontainer">
                         <h1 className="heading">PRAKRUTI PARIKSHAN</h1>

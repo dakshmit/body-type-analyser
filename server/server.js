@@ -12,15 +12,13 @@ import accountRoute from './routes/account-route.js';
 const app = express();
 app.get("/",(req,res)=>{res.send("BACKEND IS RUNNING");});
 (async () => {
-    // Connecting Mongoose
+  
     await CONNECT_DB();
 
-    // Setting Up Middleware
     app.use(CORS_MIDDLEWARE);
     app.use(await SESSION_MIDDLEWARE());
     app.use(express.json());
 
-    // Mounting API Routes
     app.use('/api', questionRoute);
     app.use('/api', reportRoute);
     app.use('/api', accountRoute);
